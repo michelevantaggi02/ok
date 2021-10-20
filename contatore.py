@@ -2,7 +2,7 @@
 import os
 from speech_recognition import AudioFile, Recognizer
 from threading import Thread
-import json, time, sys
+import json, sys
 from datetime import date
 
 #imposta quanti secondi dura un file audio (non impostare più di 30s a causa di speech_recognition)
