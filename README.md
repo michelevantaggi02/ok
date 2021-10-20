@@ -15,4 +15,4 @@ Oltre al programma esterno ovviamente c'è bisogno dell'interprete di [Python3](
 1. [Matplotlib](https://pypi.org/project/matplotlib/)
 
 ## Utilizzo
-### contatore.py
+### [contatore.py](contatore.py)
