@@ -16,3 +16,19 @@ Oltre al programma esterno ovviamente c'è bisogno dell'interprete di [Python3](
 
 ## Utilizzo
 ### [contatore.py](contatore.py)
+Questo file va eseguito per poter analizzare il file video e creare il corrispondente file di salvataggio .json (salvato nella cartella [saves/](saves/)).
+La sintassi corretta per eseguire il file è la seguente:
+`python contatore.py PERCORSO_FILE`
+Dove al posto di `PERCORSO_FILE` va ovviamente inserito il percorso del video scelto
+
+### [graph.py](graph.py)
+Questo file si occupa invece di creare un grafico con i dati dei vari file json salvati.
+I grafici disponibili saranno due e saranno visualizzati uno dopo l'altro:
+#### grafico lineare
+Un grafico con alle X intervalli di tempo di 20 secondi e alle Y il numero di OK detti in quell'intervallo:
+![Grafico 1](immagini/grafico1.jpeg)
+
+#### grafico a barre
+Un grafico con alle X il file video e alle Y il numero di OK totali detti nel file
+![Grafico 2](immagini/grafico2.jpeg)
+
