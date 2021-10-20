@@ -32,3 +32,19 @@ Un grafico con alle X intervalli di tempo di 20 secondi e alle Y il numero di OK
 Un grafico con alle X il file video e alle Y il numero di OK totali detti nel file
 ![Grafico 2](immagini/grafico2.jpeg)
 
+## Struttura dei file Json salvati
+Ogni file json ha una struttura identica, con alla base delle informazioni utili per la lettura dei dati:
+```json
+{
+    "durata": 4120, 
+    "data": "2021-10-6", 
+    "tot": 128, 
+    "0": 1,
+    ...
+}
+```
+`durata` ovviamente sta per la durata in secondi del file video
+`data` è la data dell'ultima modifica del file
+`tot` è il totale di volte in cui viene detto OK
+`n` rappresenta l'intervallo che va da n a n+20 secondi con il numero di OK che vengono detti
+Si può dire che `tot` sia un dato ridondante dato che si può tranquillamente ricavare da n, ma per comodità ho deciso di tenerlo
