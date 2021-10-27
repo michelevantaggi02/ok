@@ -3,6 +3,8 @@ from matplotlib import pyplot as plt
 import glob
 import json
 
+colors = plt.rcParams["axes.prop_cycle"]()
+
 #varie liste con cui stampare i grafici
 frammenti = []
 durate = []
@@ -15,23 +17,27 @@ for file in glob.glob("saves/save-(*).json"):
     durate.append(js.pop("durata"))
     totali[js.pop("data")] = js.pop("tot")
     frammenti.append(js)
-fig, ax = plt.subplots()
+fig, ax = plt.subplots(len(frammenti), sharex=True)
 
-for i in frammenti:
+fig.suptitle("Media: {} ok al minuto".format(
+    sum(totali.values()) * 60 / sum(durate)))
+
+for i in range(len(frammenti)):
     #creo un grafico lineare per ogni file json salvato
     #ogni grafico è a intervalli di 20 secondi
-    plt.plot(i.keys(), i.values())
-    plt.title("Media: {} ok al minuto".format(
-        sum(totali.values()) * 60 / sum(durate)))
+
+    c = next(colors)["color"]
+
+    ax[i].plot(frammenti[i].keys(), frammenti[i].values(), color=c)
+    chiavi = ax[i].get_xticks()
+    ax[i].set_xticks(chiavi[::len(chiavi)//60])
+    ax[i].set_xlim(left=-1)
     plt.xticks(rotation=90)
-    
-    plt.subplots_adjust(top=0.961, bottom=0.055, left=0.024, right=0.992)
-    plt.legend(totali.keys())
+    print(list(totali.keys())[i])
 
 #sistemo un po' il grafico e lo mostro
-chiavi = ax.get_xticks()
-ax.set_xticks(chiavi[::len(chiavi)//60])
-ax.set_xlim(left=-1)
+plt.subplots_adjust(top=0.961, bottom=0.055, left=0.024, right=0.992, hspace=0)
+fig.legend(totali.keys())
 mng = plt.get_current_fig_manager()
 mng.window.state("zoomed")
 plt.show()
